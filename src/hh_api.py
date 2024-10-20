@@ -44,7 +44,7 @@ class HeadHunterAPI:
             vacancies.extend(response.json()["items"])
         return vacancies
 
-    def get_companies(self, company_names: list[str]) -> list[str]:
+    def get_companies(self, company_names: list[str]) -> list[dict]:
         """
         Метод получения информации о компаниях по ключевым словам.
         Возвращает список id компаний.
@@ -59,7 +59,10 @@ class HeadHunterAPI:
             self.__params["text"] = company
             response = requests.get(self.__url, headers=self.__headers, params=self.__params)
             if response.json()["found"] >= 1:
-                companies.append(response.json()["items"][0]["id"])
+                id_ = response.json()["items"][0]["id"]
+                name = response.json()["items"][0]["name"]
+                url = response.json()["items"][0]["alternate_url"]
+                companies.append({"company_id": id_, "company_name": name, "company_url": url})
             else:
                 continue
         return companies

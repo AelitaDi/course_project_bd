@@ -6,22 +6,39 @@ class DBManger:
     Класс для работы с базой данных (Postgres).
     """
 
-    def __init__(self, name: str, params: dict[str, str]) -> None:
+    # def __init__(self, name: str, params: dict[str, str]) -> None:
+    #     """
+    #     Инициализация экземпляра класса.
+    #     """
+    #     self._name = "postgres"
+    #     self._params = params
+
+    def get_companies_and_vacancies_count(self) -> tuple:
         """
-        Инициализация экземпляра класса.
+        Метод получения количества компаний и вакансий в БД.
         """
-        self._name = "postgres"
-        self._params = params
+        pass
 
-    def create_database(self) -> None:
-        """Метод для создания базы данных."""
+    def get_all_vacancies(self) -> list[dict]:
+        """
+        Метод получения списка всех вакансий.
+        """
+        pass
 
-        conn = psycopg2.connect(dbname=self._name, **self._params)
-        conn.autocommit = True
-        cur = conn.cursor()
+    def get_avg_salary(self) -> float:
+        """
+        Метод получения средней зп по вакансиям.
+        """
+        pass
 
-        cur.execute(f"DROP DATABASE IF EXISTS {self._name}")
-        cur.execute(f"CREATE DATABASE {self._name}")
+    def get_vacancies_with_higher_salary(self) -> list[dict]:
+        """
+        Метод получения всех вакансий, у которых зп выше средней.
+        """
+        pass
 
-        cur.close()
-        conn.close()
+    def get_vacancies_with_keyword(self) -> list[dict]:
+        """
+        Метод получения выборки вакансий по ключевому слову.
+        """
+        pass

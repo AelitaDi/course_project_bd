@@ -17,8 +17,8 @@ HeadHunter, ПАКС, Level Group, Роскосмос, институт тепл
         companies_keywords = default_companies
     companies = HeadHunterAPI().get_companies(companies_keywords)
     for company in companies:
-        vacancies = HeadHunterAPI().get_vacancies(company)
-        print(len(vacancies))
+        vacancies = HeadHunterAPI().get_vacancies(company["company_id"])
+        print(type(vacancies[0]["id"]))
     # top_n = int(input("Введите количество вакансий для вывода в топ N: "))
     # filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
     # salary_range = input("Введите диапазон зарплат (Пример: 100000 - 150000): ")

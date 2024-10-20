@@ -9,7 +9,7 @@ def config(filename=FILE_PATH, section="postgresql"):
     # create a parser
     parser = ConfigParser()
     # read config file
-    parser.read(filename)
+    parser.read(filename, encoding='latin-1')
     db = {}
     if parser.has_section(section):
         params = parser.items(section)
