@@ -34,8 +34,6 @@ class HeadHunterAPI:
         """
         vacancies = []
 
-        # response = self.__get_response(per_page=100, employer_id=company_id)
-        # vacancies.extend(response.get("items"))
         if self.__get_response():
             self.__url = "https://api.hh.ru/vacancies"
             self.__params["employer_id"] = company_id
@@ -100,12 +98,13 @@ class HeadHunterAPI:
                 salary = salary * cls.get_price(vacancy["salary"]["currency"])
 
         transformed_vacancy = {
-            "id": vacancy["id"],
+            "vacancy_id": vacancy["id"],
+            "company_id": vacancy["employer"]["id"],
             "name": vacancy["name"],
             "salary": salary,
             "url": vacancy.get("alternate_url", ""),
             "description": f"Обязанности: {vacancy['snippet'].get('responsibility', '')} "
-                           f"Требования: {vacancy['snippet'].get('requirement', '')}",
+            f"Требования: {vacancy['snippet'].get('requirement', '')}",
         }
         return transformed_vacancy
 
